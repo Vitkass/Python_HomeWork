@@ -1,4 +1,4 @@
-def extract_prices(products):
+def extract_prices(products:list)->list:
     prices = []
     for product in products:
         prices.append(product.price)

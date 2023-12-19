@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Last Furniture{% endblock %}
+{% load static %}
+{% block content %}
+<body>
+<div class="card-title">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1>Список текстур:</h1>
+    
+
+
+
+    <ul class="games-item">
+    {% if latest_furniture %}
+        
+        {% for a in latest_furniture %}
+ <li><a href="{% url 'furniture:detail' a.id %}">Texture: {{a.oder_number}}</a></li>  &nbsp; 
+        {% endfor %}
+
+    {% else %}
+        There is no Furniture =(
+    {% endif %}
+    
+    </ul>
+
+    
+    </div>
+
+<div class="card-title">
+
+<h1>Фильтрация:</h1>
+
+<table class="filter-table">
+    
+    
+    
+    <colgroup>
+        <col span="7" style="background:Plum">
+    </colgroup>
+    <form action="" method="get">
+        
+        
+    <tr>
+      
+        <td>Номер заказа</td>
+        <td>Sn номер</td>
+        <td>Размер</td>        
+       
+    </tr>
+    
+    <tr class="filter-tr">
+    
+        
+        <td>{{form.oder}}</td>
+        <td>{{form.sn}}</td>
+        <td>{{form.size}}</td>
+        
+        
+    </tr>
+    
+    
+    
+    {% if Furniture %}
+        {% for b in Furniture %}
+    
+        <tr>
+    
+            <td>{{b.oder_number}}</td>
+            <td>{{b.sn_number}}</td>
+            <td>{{b.size}}</td>
+        </tr>
+        {% endfor %}
+    
+    
+    {% elif ident == False %}
+        
+        <p>There is no Furniture =(</p>
+    
+    {% endif %}
+    
+    
+    {% if ident == True %}
+    
+    <p>Please start your filter</p>
+    
+    {% endif %}
+    
+    
+    
+
+</table>
+  
+<input type="submit" value="Фильрация по" >
+    </form>
+    <form>
+<input type="button" value="Обнуление фильтра" onClick='location.href="{% url 'furniture:index' %}"''>
+</form>
+
+</div>
+
+
+<div class="card-title">
+
+    <h4><!--  --></h4>
+<h1> Таблица: </h1>
+
+
+<table class="main-table">
+     
+    <tr>
+        <th>Номер заказа:</th>
+        <th>Наиминование:</th>
+        <th>Размер:</th>
+        <th>Дата заказа:</th>
+        <th>Дата сдачи:</th>
+        <th>Номер SN:</th>
+        <th>Статус:</th>
+
+        
+    </tr>
+    
+    
+    
+    
+        {% for a in latest_furniture %}
+    
+        <tr>
+    
+            <td>{{a.oder_number}}</td>
+            <td>{{a.material}}</td>
+            <td>{{a.size}}</td>
+            <td>{{a.oder_date}}</td>
+            <td>{{a.delivery_date}}</td>
+            <td>{{a.sn_number}}</td>
+            <td>{{a.status}}</td>
+        </tr>
+    
+        {% endfor %}
+  
+    
+     
+
+    
+    
+        
+
+</table>
+
+
+</div>
+{% endblock %}
+    </body>

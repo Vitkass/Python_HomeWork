@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chosen Furniture number: {{furniture.id}}{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+<h1>Информация о текстуре</h1>
+<body>
+    
+    <div class="inner">
+        <ul>
+            <li>Номер заказа : {{furniture.oder_number}} </li>
+            <li>Наиминование : {{furniture.material}} </li>
+            <li>Размер : {{furniture.size}} </li>
+            <li>Дата заказа : {{furniture.oder_date}} </li>
+            <li>Дата сдачи : {{furniture.delivery_date}} </li>
+            <li>Номер SN : {{furniture.sn_number}} </li>
+            <li>Статус : {{furniture.status}} </li>
+        </ul>
+        
+    </div>
+            
+    
+    <input type="button" class="Furniture-batton" value="Вернуься на главную" onClick='location.href="{% url 'furniture:index' %}"'>
+            
+        
+            
+    
+</body>
+{% endblock %}
